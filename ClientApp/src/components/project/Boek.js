@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 
-const Boek = (props) => {
+function Boek(props) {
     // useEffect(() =>{
     //     const DAGEN = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
     //     for (const dag of [DAGEN])
@@ -13,20 +13,21 @@ const Boek = (props) => {
 
 
     return (
+        <h1>Hello!</h1>
         
-        <form>
-            Kies een dag uit: <div id="lijst"></div>
-            <br />
-            <input type="text" name="aantal"></input>
-            <br />
-            <input type="text" name="email"></input>
-            <br />
+        // <form>
+        //     Kies een dag uit: <div id="lijst"></div>
+        //     <br />
+        //     <input type="text" name="aantal"></input>
+        //     <br />
+        //     <input type="text" name="email"></input>
+        //     <br />
 
-            <br />
-            <input type="submit" name='Doe boeking'></input>
-        </form>
+        //     <br />
+        //     <input type="submit" name='Doe boeking'></input>
+        // </form>
 
-    )
+    );
 
 
 }
