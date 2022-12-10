@@ -1,4 +1,4 @@
-import { Boek } from "./components/project/Boek";
+import Boek from "./components/project/Boek";
 import { Home } from "./components/Home";
 
 const AppRoutes = [
