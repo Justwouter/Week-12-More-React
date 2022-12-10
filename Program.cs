@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<PretparkContext>(options =>
+    options.UseSqlite("Data Source = W6API.sqlite"));
 
 // Add services to the container.
 
