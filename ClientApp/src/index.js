@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom/client';
 
 import Home from './components/Home';
 import Layout from './components/Layout';
-import Boek from './components/project/Boek'
+import Boek from './components/project/Boek/Boek'
 
 
 export default function Router() {
