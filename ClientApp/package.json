@@ -48,7 +48,6 @@
     "css-what": "^5.0.1",
     "nth-check": "^3.0.1"
   },
-  "proxy" : "http://localhost:7296/",
   "scripts": {
     "prestart": "node aspnetcore-https && node aspnetcore-react",
     "start": "rimraf ./build && react-scripts start",

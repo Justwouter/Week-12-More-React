@@ -23,10 +23,10 @@ namespace Testing.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Dag>>> GetDays()
         {
-          if (_context.Days == null)
-          {
-              return NotFound();
-          }
+            if (_context.Days == null)
+            {
+                return NotFound();
+            }
             return await _context.Days.ToListAsync();
         }
 
@@ -34,10 +34,10 @@ namespace Testing.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Dag>> GetDag(string id)
         {
-          if (_context.Days == null)
-          {
-              return NotFound();
-          }
+            if (_context.Days == null)
+            {
+                return NotFound();
+            }
             var dag = await _context.Days.FindAsync(id);
 
             if (dag == null)
@@ -53,6 +53,10 @@ namespace Testing.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDag(string id, Dag dag)
         {
+            if (dag.email.Length > 6 && dag.email.Contains("@"))
+            {
+                return BadRequest("Invalid email");
+            }
             if (id != dag.Id)
             {
                 return BadRequest();
@@ -84,10 +88,14 @@ namespace Testing.Controllers
         [HttpPost]
         public async Task<ActionResult<Dag>> PostDag(Dag dag)
         {
-          if (_context.Days == null)
-          {
-              return Problem("Entity set 'PretparkContext.Days'  is null.");
-          }
+            if (dag.email.Length > 6 && dag.email.Contains("@"))
+            {
+                return BadRequest("Invalid email");
+            }
+            if (_context.Days == null)
+            {
+                return Problem("Entity set 'PretparkContext.Days'  is null.");
+            }
             _context.Days.Add(dag);
             try
             {
