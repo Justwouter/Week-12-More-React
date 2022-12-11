@@ -3,7 +3,8 @@
 
 #Config files
 .vscode
-
+Migrations
+*.sqlite
 
 # User-specific files
 *.suo

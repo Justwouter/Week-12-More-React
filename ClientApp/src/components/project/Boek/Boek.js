@@ -16,25 +16,28 @@ const Boek = () => {
 
     return (
         // <h2>Hello!</h2>
+        <div>
+        <h1>API URL https://localhost:7296/swagger</h1>
+            <form>
+                Kies een dag uit: <ul id="lijst">
+                    {DayArray.map((item, index) => {
 
-        <form>
+                        return <DayBox key={index} disabled={false} day={item} text="Miss Atomic Bomb" />
 
-            Kies een dag uit: <ul id="lijst">
-                {DayArray.map((item, index) => {
+                    })}
+                </ul>
+                <br />
+                <input type="number" name="aantal"></input>
+                <br />
+                <input type="email" name="email"></input>
+                <br />
 
-                    return <DayBox key={index} disabled = {false} day={item} text="Miss Atomic Bomb"/>
+                <br />
+                <button disabled={!ButtonOn} type="submit"  >Doe boeking</button>
+            </form>
 
-                })}
-            </ul>
-            <br />
-            <input type="number" name="aantal"></input>
-            <br />
-            <input type="email" name="email"></input>
-            <br />
+        </div>
 
-            <br />
-            <button disabled={!ButtonOn} type="submit"  >Doe boeking</button>
-        </form>
 
     );
 
