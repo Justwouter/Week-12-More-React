@@ -32,7 +32,7 @@ namespace Testing.Controllers
 
         // GET: api/Dagen/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Dag>> GetDag(int id)
+        public async Task<ActionResult<Dag>> GetDag(string id)
         {
           if (_context.Days == null)
           {
@@ -51,7 +51,7 @@ namespace Testing.Controllers
         // PUT: api/Dagen/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDag(int id, Dag dag)
+        public async Task<IActionResult> PutDag(string id, Dag dag)
         {
             if (id != dag.Id)
             {
@@ -89,14 +89,28 @@ namespace Testing.Controllers
               return Problem("Entity set 'PretparkContext.Days'  is null.");
           }
             _context.Days.Add(dag);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (DagExists(dag.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return CreatedAtAction("GetDag", new { id = dag.Id }, dag);
         }
 
         // DELETE: api/Dagen/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDag(int id)
+        public async Task<IActionResult> DeleteDag(string id)
         {
             if (_context.Days == null)
             {
@@ -114,7 +128,7 @@ namespace Testing.Controllers
             return NoContent();
         }
 
-        private bool DagExists(int id)
+        private bool DagExists(string id)
         {
             return (_context.Days?.Any(e => e.Id == id)).GetValueOrDefault();
         }

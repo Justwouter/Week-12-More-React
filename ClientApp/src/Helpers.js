@@ -1,4 +1,12 @@
-function PostDag(BODY) {
+export function formatDate(date){
+  return (date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDay())
+}
+
+export function PostDag(id) {
+  let BODY = {
+    id: id,
+    guests: 0
+  }
   fetch('https://localhost:7296/api/Dagen', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
@@ -10,10 +18,19 @@ function PostDag(BODY) {
   });
 }
 
-function GetDag(url) {
-  fetch(url)
-    .then(response => response.json())
-    .then(data =>  _displayItems(data))
-    .catch(error => console.error('Unable to get items.', error));
-
+export async function GetDagId(date) {
+  console.log(date)
+  const response = await fetch("http://localhost:7296/api/Dagen", {headers: {
+    "access-control-allow-origin" : "*",
+    "Sec-Fetch-Site": "*"}});
+  console.log(response)
 }
+
+
+
+
+
+
+
+
+//"proxy": "http://localhost:7296",

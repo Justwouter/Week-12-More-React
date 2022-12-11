@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors();
+
 builder.Services.AddDbContext<PretparkContext>(options =>
     options.UseSqlite("Data Source = PretparkDB.sqlite"));
 
@@ -14,7 +16,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 var app = builder.Build();
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
